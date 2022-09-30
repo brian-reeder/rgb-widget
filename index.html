@@ -1,0 +1,44 @@
+<HTML lang="en">
+	<head>
+		<link rel="stylesheet" href="./styles/style.css" />
+		<script src="./scripts/api.js"></script>
+		<title>Hex to RGB</title>
+	</head>
+	<body>
+		<div id="container">
+			<h1 id="title">Convert Hex and RGB</h1>
+			<div class="input-container">
+				<label>HEX (#112233)</label>
+				<input id="hex-input" type="text" value="#000000" />
+				<div id="hex-button" class="button"></div>		
+
+				<label>RGB (rgb(0,0,0))</label>
+				<input id="rgb-input" type="text" value="rgb(0,0,0)" />
+				<div  id="rgb-button" class="button"></div>
+			</div>
+			<div class="slider-container">
+				<label>R:</label>
+				<input id="r-input" type="range" min="0" max="255" step="1" value="0" />
+				<!--<input id="r-num" type="number" min="0" max="255" step="1" />-->
+				
+				<label>G:</label>
+				<input id="g-input" type="range" min="0" max="255" step="1" value="0" />
+				<!--<input id="g-num" type="number" min="0" max="255" step="1" />-->
+				
+				<label>B:</label>
+				<input id="b-input" type="range" min="0" max="255" step="1" value="0" />
+				<!--<input id="b-num" type="number" min="0" max="255" step="1" pattern="\d{1,3}"/>-->
+			</div>
+			<div class="flex-container">
+				<div id="opt1" class="square"></div>
+				<div id="opt2" class="square"></div>
+				<div id="opt3" class="square"></div>
+			</div>
+			<div class="flex-container">
+				<input type="radio" name="target" id="opt1" value="opt1" checked />
+				<input type="radio" name="target" id="opt2" value="opt2" />
+				<input type="radio" name="target" id="opt3" value="opt3" />
+			</div>
+		</div>
+	</body>
+</HTML>
