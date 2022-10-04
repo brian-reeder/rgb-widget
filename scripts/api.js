@@ -16,6 +16,7 @@ window.onload = () => {
 	bInput.addEventListener('input', updateSliders);
 	
 	boxes.forEach((box) => {box.addEventListener('input', updateSliders)});
+	
 }
 
 function updateHex(e) {
