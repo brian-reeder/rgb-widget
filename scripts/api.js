@@ -1,28 +1,19 @@
-window.onload = () => {
-	const hexInput = document.getElementById('hex-input');
-	const rgbInput = document.getElementById('rgb-input');
+window.onload = () => {	
+	$('#hex-input').on('input', updateHex);
+	$('#rgb-input').on('input', updateRGB);
 	
-	const rInput = document.getElementById('r-input');
-	const gInput = document.getElementById('g-input');
-	const bInput = document.getElementById('b-input');
+	$('#r-input').on('input', updateSliders);
+	$('#g-input').on('input', updateSliders);
+	$('#b-input').on('input', updateSliders);
 	
-	const boxes = document.getElementsByName('target');
-	
-	hexInput.addEventListener('input', updateHex);
-	rgbInput.addEventListener('input', updateRGB);
-	
-	rInput.addEventListener('input', updateSliders);
-	gInput.addEventListener('input', updateSliders);
-	bInput.addEventListener('input', updateSliders);
-	
-	boxes.forEach((box) => {box.addEventListener('input', updateSliders)});
+	$('.target').each((e) => {
+		$(this).on('input', updateSliders);
+	});
 	
 }
 
-function updateHex(e) {
-	const hexInput = document.getElementById('hex-input');
-	
-	const hex = hexInput.value;
+function updateHex(e) {	
+	const hex = $('#hex-input').val();
 	const reHexColor = /^#?[0-9A-Fa-f]{6}$/;
 	if(hex.match(reHexColor)) {
 		const shortHex = hex.startsWith('#') ? hex.slice(1) : hex;
@@ -37,8 +28,7 @@ function updateHex(e) {
 };
 
 function updateRGB(e) {
-	const rgbInput = document.getElementById('rgb-input');
-	const rgb = rgbInput.value;
+	const rgb = $("#rgb-input").val();
 	const reRGBColor = /^rgb\(([1-9]?[\d]|[1][\d][\d]|[2][0-4][\d]|[2][5][0-5]),([1-9]?[\d]|[1][\d][\d]|[2][0-4][\d]|[2][5][0-5]),([1-9]?[\d]|[1][\d][\d]|[2][0-4][\d]|[2][5][0-5])\)/;
 	if(rgb.match(reRGBColor)) {
 		const splitNums = rgb.slice(4, rgb.length-1).split(',');
@@ -54,62 +44,44 @@ function updateRGB(e) {
 }
 
 function updateSliders(e) {
-	const rInput = document.getElementById('r-input');
-	const gInput = document.getElementById('g-input');
-	const bInput = document.getElementById('b-input');
-	
-	
-	
 	const nums = {
-		'r': rInput.value,
-		'g': gInput.value,
-		'b': bInput.value,
+		'r': $('#r-input').val(),
+		'g': $('#g-input').val(),
+		'b': $('#b-input').val(),
 	};
 	
 	setFields(nums);
 }
 
 function setFields(nums) {
-	const title = document.getElementById('title');
-	const boxes = document.getElementsByName('target');
 	const hex = numsToHex(nums);
 	
 	setHex(hex);
 	setRGB(numsToRGB(nums));
 	setSliders(nums);
 	
-	title.style.color = hex;
-	
-	boxes.forEach((box) => {
-		
-		document.getElementById(box.value).style.backgroundColor = box.checked ? hex : '#f8f8f2';
+	$('#title').css('color', hex);
+
+	$('.target').each(function(e) {
+		const target = `#${$(this).val()}`;
+		$(target).css('background-color', $(this).is(':checked') ? hex : '#F8F8F2');
 	});
 }
 
 function setHex(hex) {
-	const hexInput = document.getElementById('hex-input');
-	const hexButton = document.getElementById('hex-button');
-	
-	hexInput.value = hex;
-	hexButton.style.backgroundColor = hex;
+	$('hex-input').val(hex);
+	$('#hex-button').css('background-color', hex);
 };
 
 function setRGB(rgb) {
-	const rgbInput = document.getElementById('rgb-input');
-	const rgbButton = document.getElementById('rgb-button');
-	
-	rgbInput.value = rgb;
-	rgbButton.style.backgroundColor = rgb;
+	$('#rgb-input').val(rgb);
+	$('#rgb-button').css('background-color', rgb);
 };
 
 function setSliders(nums) {
-	const rInput = document.getElementById('r-input');
-	const gInput = document.getElementById('g-input');
-	const bInput = document.getElementById('b-input');
-	
-	rInput.value = nums['r'];
-	gInput.value = nums['g'];
-	bInput.value = nums['b'];
+	$('#r-input').val(nums['r']);
+	$('#g-input').val(nums['g']);
+	$('#b-input').val(nums['b']);
 };
 
 function numsToHex(nums) {
