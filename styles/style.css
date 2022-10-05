@@ -53,9 +53,16 @@ div.slider-container {
 }
 
 div.input-container {
-	display: grid;
-	grid-template-columns: [label] 45% [input] 45% [button] 10%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 	gap: 10px;
+}
+
+div.input-container > * {
+	width: 180px;
 }
 
 div.input-container > input {
