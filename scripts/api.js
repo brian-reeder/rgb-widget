@@ -19,8 +19,8 @@ function updateHex(e) {
 		const shortHex = hex.startsWith('#') ? hex.slice(1) : hex;
 		const nums = {
 			'r': parseInt(shortHex.slice(0,2), 16),
-			'b': parseInt(shortHex.slice(2,4), 16),
-			'g': parseInt(shortHex.slice(4,6), 16),
+			'g': parseInt(shortHex.slice(2,4), 16),
+			'b': parseInt(shortHex.slice(4,6), 16),
 		};
 		
 		setFields(nums);
