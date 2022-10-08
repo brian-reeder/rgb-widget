@@ -7,6 +7,10 @@ window.onload = () => {
 	$('#b-input').on('input', updateSliders);
 	
 	$('.target').each( (i,e) => $(e).on('input', updateSliders) );
+
+	$('#r-input').val('248');
+	$('#g-input').val('242');
+	$('#b-input').val('248');
 	
 }
 
